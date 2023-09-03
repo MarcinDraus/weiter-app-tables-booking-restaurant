@@ -2,7 +2,7 @@
 
 import { Container } from 'react-bootstrap';
 import React from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route } from 'react-router-dom';
 import Footer from './components/views/Footer/Footer';
 import Header from './components/views/Header/Header';
 import Home from './components/pages/Home';
@@ -16,11 +16,11 @@ function App() {
     <Container>
     <div>
     <Header />
-       <Routes>
-            <Route path="/" element={<Home />} />    
-            <Route path="/pagetable/id:" element={<PageTable />} />  
-            <Route path="*" element={<NotFound />} />
-        </Routes>
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/pagetable/:id" element={<PageTable />} /> 
+          <Route path="*" element={<NotFound />} />
+      </Routes>
     <Footer />
     </div>
     </Container>

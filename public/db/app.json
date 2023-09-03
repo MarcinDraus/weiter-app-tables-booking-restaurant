@@ -1,6 +1,5 @@
 
-const initialState = {
-   
+{ 
     "tables": [
         {
           "id": "1",
@@ -29,16 +28,6 @@ const initialState = {
           "peopleAmount": 0,
           "maxPeopleAmount": 3,
           "bill": 0
-        },
-        {
-          "id": 5,
-          "status": "Reserved",
-          "people": 3,
-          "maxPeople": 6,
-          "bill": "-1"
         }
       ]
-
   }
-
-export default initialState;
