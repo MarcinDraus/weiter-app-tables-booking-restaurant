@@ -3,9 +3,17 @@ import { Container, Col, Row, Button, } from 'react-bootstrap';
 import { getAllTables } from '../../Redux/tablesRerdux';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchTables } from '../../Redux/tablesRerdux';
+import { useEffect } from 'react';
 
 const Home = () => {
+    const dispatch = useDispatch();
     const tables = useSelector(getAllTables);
+
+    useEffect(() => {
+		dispatch(fetchTables());
+	}, [dispatch]);
     return (
         <Container>
             <Row className="mb-4">

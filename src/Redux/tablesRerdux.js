@@ -1,48 +1,58 @@
 
+import { API_URL } from '../'
 
 //selectors
 export const getAllTables = (state) => state.tables;
+export const getTableById = ({ tables }, tableId) =>
+	tables.find((table) => table.id === tableId);
 
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
 
 // action creators
-const ADD_TABLE = createActionName('ADD_TABLE');
-const REMOVE_TABLE = createActionName('REMOVE_TABLE');
+const UPDATE_TABLES = createActionName('UPDATE_TABLES');
+const EDIT_TABLE = createActionName('EDIT_TABLE');
 
-export const addPost = (payload) => ({
-  type: ADD_TABLE,
-  payload
-});
 
-export const editPost = (payload) => ({
-  type: REMOVE_TABLE,
-  payload
-});
+export const updateTables = (payload) => ({ 
+  type: UPDATE_TABLES,
+   payload });
+
+export const editTable = (payload) => ({ type: EDIT_TABLE, payload });
+
+export const editTablesRequest = (editedTable) => {
+	return (dispatch) => {
+		const options = {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(editedTable),
+		};
+		fetch(`${API_URL}/tables/${editedTable.id}`, options).then(() =>
+			dispatch(editTable(editedTable))
+		);
+	};
+};
+
+export const fetchTables = () => {
+	return (dispatch) => {
+		fetch(`${API_URL}/tables`)
+			.then((res) => res.json())
+			.then((tables) => {
+				dispatch(updateTables(tables));
+			})
+			.catch((error) => console.log('error fetching tables:', error));
+	};
+};
 
 const tablesReducer = (statePart = [], action) => {
 	switch (action.type) {
-        case 'ADD_TABLE':
-            // Przykład obsługi dodawania nowej tabeli
-            return {
-              ...statePart,
-              tables: [...statePart.tables, action.payload], // Dodaj nową tabelę do istniejącej listy
-            };
-          case 'REMOVE_TABLE':
-            // Przykład obsługi usuwania tabeli
-            return {
-              ...statePart,
-              tables: statePart.tables.filter((table) => table.id !== action.payload), // Usuń tabelę z listy
-            };
-          // Dodaj więcej przypadków, aby obsługiwać inne akcje
+    case UPDATE_TABLES:
+			return [...action.payload];
           default:
-            return statePart; // Domyślnie zwracaj stan bez zmian
-      
-
-
-
-
-
+            return statePart; 
+  
     }
 };
 export default tablesReducer;

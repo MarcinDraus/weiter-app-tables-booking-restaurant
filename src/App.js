@@ -9,9 +9,16 @@ import Home from './components/pages/Home';
 import NotFound from './components/pages/NotFound';
 import PageTable from './components/pages/PageTable';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchTables } from './Redux/tablesRerdux';
 
-
-function App() {
+const App = () => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(fetchTables());
+	}, [dispatch]);
+  
   return (
     <Container>
     <div>
