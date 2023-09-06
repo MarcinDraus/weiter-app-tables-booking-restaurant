@@ -1,3 +1,9 @@
+## App for managing table status' at a restaurant
+
+live version hosted on
+
+https://weiter-app-tables-booking-restaurant-1.marcindraus.repl.co/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
