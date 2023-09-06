@@ -5,8 +5,9 @@ import { API_URL } from '../config';
 export const getAllTables = (state) => state.tables;
 export const getTableById = ({ tables }, tableId) => {
 	console.log( tables, tableId)
+	// eslint-disable-next-line eqeqeq
 	return tables.find((table) => table.id == tableId);
-	};
+};
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
 
