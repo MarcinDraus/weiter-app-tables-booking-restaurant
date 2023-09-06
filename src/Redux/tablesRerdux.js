@@ -6,8 +6,7 @@ export const getAllTables = (state) => state.tables;
 export const getTableById = ({ tables }, tableId) => {
 	console.log( tables, tableId)
 	return tables.find((table) => table.id == tableId);
-	
-}
+	};
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
 
