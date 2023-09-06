@@ -25,7 +25,7 @@ const App = () => {
     <Header />
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/pagetable/:id" element={<PageTable />} /> 
+          <Route path="/pagetable/:tableId" element={<PageTable />} /> 
           <Route path="*" element={<NotFound />} />
       </Routes>
     <Footer />

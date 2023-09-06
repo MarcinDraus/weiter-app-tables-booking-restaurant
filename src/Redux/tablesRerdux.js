@@ -3,9 +3,11 @@ import { API_URL } from '../config';
 
 //selectors
 export const getAllTables = (state) => state.tables;
-export const getTableById = ({ tables }, tableId) =>
-	tables.find((table) => table.id === tableId);
-
+export const getTableById = ({ tables }, tableId) => {
+	console.log( tables, tableId)
+	return tables.find((table) => table.id == tableId);
+	
+}
 // actions
 const createActionName = actionName => `app/tables/${actionName}`;
 

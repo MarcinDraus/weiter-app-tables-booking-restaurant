@@ -12,10 +12,10 @@ import { useEffect } from 'react';
 const PageTable = () => {
     const statusSelection = ['Free', 'Reserved', 'Cleaning', 'Busy'];
     const { tableId } = useParams();
-
+	//const { id } = useParams();
     const table = useSelector((state) =>
 		getTableById(state, parseInt(tableId)));
-
+console.log(table, 'table')
     const allTables = useSelector(getAllTables);
 
     const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const PageTable = () => {
 		}
 	}, [tableId, allTables, navigate]);
 
-    if (!table) {
+    if (!table ) {
 		return (
 
 			<><button className="btn btn-primary" type="button" disabled>
@@ -65,7 +65,7 @@ const PageTable = () => {
     return (
         <Form className="mt-3 d-flex flex-column gap-2"
         onSubmit={validate(handleSubmit)} >
-            <h1>Table {table.id}</h1>
+            <h1>Table {tableId}</h1>
 				<Form.Group className="mt-3">
 					<Form.Label className="me-3 fw-bold">Status:</Form.Label>
 					<Form.Select
