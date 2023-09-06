@@ -1,6 +1,6 @@
 import React from 'react';
 import {  useSelector } from 'react-redux';
-import { Button, Form, Spinner} from 'react-bootstrap';
+import { Button, Form, } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { getTableById, editTablesRequest, getAllTables,} from '../../Redux/tablesRerdux';
 import { useState } from 'react';
@@ -21,10 +21,10 @@ const PageTable = () => {
     const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-    const [status, setStatus] = useState(table?.status || '');
-	const [people, setPeople] = useState(table?.people || 0);
-	const [maxPeople, setMaxPeople] = useState(table?.maxPeople || 0);
-	const [bill, setBill] = useState(table?.bill || 0);
+    const [status, setStatus] = useState(table? table.status : '');
+	const [people, setPeople] = useState(table? table.people : 0);
+	const [maxPeople, setMaxPeople] = useState(table? table.maxPeople : 0);
+	const [bill, setBill] = useState(table? table.bill : 0);
 
     const handleSubmit = (e) => {
 		const updatedTable = {
@@ -54,20 +54,18 @@ const PageTable = () => {
 
     if (!table) {
 		return (
-			<Spinner
-				animation="border"
-				role="status"
-				className="m-auto text-center"
-			>
-				<span className="visually-hidden">Loading table...</span>
-			</Spinner>
+
+			<><button className="btn btn-primary" type="button" disabled>
+					<span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+				    Loading...table
+				</button></>
 		);
 	}
 
     return (
         <Form className="mt-3 d-flex flex-column gap-2"
         onSubmit={validate(handleSubmit)} >
-            <h1>Table {tableId}</h1>
+            <h1>Table {table.id}</h1>
 				<Form.Group className="mt-3">
 					<Form.Label className="me-3 fw-bold">Status:</Form.Label>
 					<Form.Select

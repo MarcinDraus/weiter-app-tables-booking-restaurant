@@ -1,5 +1,5 @@
 
-import { API_URL } from '../'
+import { API_URL } from '../config';
 
 //selectors
 export const getAllTables = (state) => state.tables;
@@ -50,9 +50,15 @@ const tablesReducer = (statePart = [], action) => {
 	switch (action.type) {
     case UPDATE_TABLES:
 			return [...action.payload];
-          default:
-            return statePart; 
+    case EDIT_TABLE:
+      return statePart.map((table) =>
+        table.id === action.payload.id
+          ? { ...table, ...action.payload }
+          : table
+      );
+        default:
+          return statePart; 
   
-    }
+  }
 };
 export default tablesReducer;
